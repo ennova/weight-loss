@@ -12,6 +12,7 @@
           %th Difference (kg)
 
       %tbody
+        - @people.sort! { |person| person.weight_difference }
         - @people.each do |person|
           %tr{ class: "#{person.determine_row_class(person.weight_difference)}" }
             %td= person.name
@@ -31,6 +32,7 @@
           %th Difference (kg)
 
       %tbody
+        - @people.sort! { |person| person.week_difference }
         - @people.each do |person|
           %tr{ class: "#{person.determine_row_class(person.week_difference)}" }
             %td= person.name
