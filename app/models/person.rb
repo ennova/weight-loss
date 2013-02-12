@@ -3,6 +3,10 @@ class Person < ActiveRecord::Base
 
   has_many :weigh_ins
 
+  validates :height, presence: true
+  validates :name, presence: true
+  validates :target_bmi, presence: true
+
   def last_bmi
     bmi = 0
     weigh_in = weigh_ins.order('date').last
@@ -53,5 +57,12 @@ class Person < ActiveRecord::Base
 
   def week_difference
     last_weight - last_week_weight
+  end
+
+  def determine_row_class(num)
+    row_class = 'success'
+    row_class = 'error' if num > 0
+    row_class = 'warning' if num == 0
+    row_class
   end
 end

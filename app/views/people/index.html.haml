@@ -13,13 +13,14 @@
 
       %tbody
         - @people.each do |person|
-          %tr
+          %tr{ class: "#{person.determine_row_class(person.weight_difference)}" }
             %td= person.name
             %td= number_with_precision(person.target_bmi, strip_insignificant_zeros: true)
             %td= person.starting_weight
             %td= number_with_precision(person.last_bmi, strip_insignificant_zeros: true)
             %td= number_with_precision(person.last_weight, strip_insignificant_zeros: true)
             %td= number_with_precision(person.weight_difference, strip_insignificant_zeros: true)
+
     %h3 This week vs. Last week
     %table.table.table-bordered.table-striped
       %thead
@@ -31,10 +32,7 @@
 
       %tbody
         - @people.each do |person|
-          - row_class = 'success'
-          - row_class = 'error' if person.week_difference > 0
-          - row_class = 'warning' if person.week_difference == 0
-          %tr{ class: "#{row_class}" }
+          %tr{ class: "#{person.determine_row_class(person.week_difference)}" }
             %td= person.name
             %td= number_with_precision(person.last_week_weight, strip_insignificant_zeros: true)
             %td= number_with_precision(person.last_weight, strip_insignificant_zeros: true)            
