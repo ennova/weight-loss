@@ -1,4 +1,12 @@
 WeightLoss::Application.routes.draw do
+  root to: 'people#index'
+
+  resources :weigh_ins
+
+
+  resources :people
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

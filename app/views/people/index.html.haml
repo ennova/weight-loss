@@ -1,0 +1,23 @@
+.page-header
+  = link_to new_person_path, :class => 'btn btn-primary' do
+    %i.icon-plus.icon-white
+    New Person
+  %h1 Listing people
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Height (m)
+      %th Target BMI
+      %th Last recorded BMI
+      %th Last recorded weight (kg)
+
+  %tbody
+    - @people.each do |person|
+      %tr
+        %td= person.name
+        %td= number_with_precision(person.height, strip_insignificant_zeros: true)
+        %td= number_with_precision(person.target_bmi, strip_insignificant_zeros: true)
+        %td= number_with_precision(person.last_bmi, strip_insignificant_zeros: true)
+        %td= number_with_precision(person.last_weight, strip_insignificant_zeros: true)

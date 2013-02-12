@@ -1,0 +1,27 @@
+.page-header
+  = link_to new_weigh_in_path, :class => 'btn btn-primary' do
+    %i.icon-plus.icon-white
+    New Weigh in
+  %h1 Listing weigh_ins
+
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Person
+      %th Weight (kg)
+      %th Date
+      %th BMI
+      %th
+      %th
+      %th
+
+  %tbody
+    - @weigh_ins.each do |weigh_in|
+      %tr
+        %td= weigh_in.person_id
+        %td= weigh_in.weight
+        %td= weigh_in.date
+        %td= weigh_in.calculate_bmi
+        %td= link_to 'Show', weigh_in
+        %td= link_to 'Edit', edit_weigh_in_path(weigh_in)
+        %td= link_to 'Destroy', weigh_in, :confirm => 'Are you sure?', :method => :delete
