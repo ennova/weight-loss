@@ -79,9 +79,9 @@ describe PeopleController do
         assigns(:person).should be_persisted
       end
 
-      it "redirects to the created person" do
+      it "redirects to the root url" do
         post :create, {:person => valid_attributes}, valid_session
-        response.should redirect_to(Person.last)
+        response.should redirect_to(root_url)
       end
     end
 
@@ -120,10 +120,10 @@ describe PeopleController do
         assigns(:person).should eq(person)
       end
 
-      it "redirects to the person" do
+      it "redirects to root url" do
         person = Person.create! valid_attributes
         put :update, {:id => person.to_param, :person => valid_attributes}, valid_session
-        response.should redirect_to(person)
+        response.should redirect_to(root_url)
       end
     end
 

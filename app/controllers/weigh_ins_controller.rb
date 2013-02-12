@@ -44,7 +44,7 @@ class WeighInsController < ApplicationController
 
     respond_to do |format|
       if @weigh_in.save
-        format.html { redirect_to @weigh_in, notice: 'Weigh in was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Weigh in was successfully created.' }
         format.json { render json: @weigh_in, status: :created, location: @weigh_in }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class WeighInsController < ApplicationController
 
     respond_to do |format|
       if @weigh_in.update_attributes(params[:weigh_in])
-        format.html { redirect_to @weigh_in, notice: 'Weigh in was successfully updated.' }
+        format.html { redirect_to root_url, notice: 'Weigh in was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

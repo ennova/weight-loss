@@ -4,7 +4,7 @@
   .form-inputs
     = f.input :person_id, collection: Person.all
     = f.input :weight
-    = f.input :date
+    = f.input :date, as: :string, input_html: {class: 'datepicker'}
 
-  .form-actions
-    = f.button :submit, :class => "btn-primary"
+  .pull-right
+    = f.button :submit, label: "Record weigh-in", class: "btn-primary"

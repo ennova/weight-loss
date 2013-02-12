@@ -15,6 +15,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem "haml", ">= 3.0.0"
   gem "haml-rails"
+  gem 'bootstrap-datepicker-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -40,5 +41,6 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem "rspec-rails", ">= 2.0.1", :group => [:development, :test]
+gem "factory_girl_rails", group: [:development, :test]
 gem 'simple_form'
 gem 'bootstrap-generators', '~> 2.2'

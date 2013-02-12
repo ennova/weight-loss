@@ -21,11 +21,15 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to "WeightLoss.", "#", :class => "brand"
+          = link_to "WeightLoss.", "/", :class => "brand"
           .nav-collapse
             %ul.nav
-              %li.active
-                %a{:href => "#"} Home
+              %li
+                %a{:href => "/"} Home
+          .pull-right
+            = link_to new_person_path, class: "btn btn-primary" do
+              %i.icon-plus.icon-white
+              Add new person
     .container
       - flash.each do |name, msg|
         = content_tag :div, :class => "alert #{name == :error ? "alert-error" : "alert-success" }" do

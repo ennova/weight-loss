@@ -3,7 +3,7 @@ class CreateWeighIns < ActiveRecord::Migration
     create_table :weigh_ins do |t|
       t.integer :person_id
       t.decimal :weight
-      t.datetime :date
+      t.date :date
 
       t.timestamps
     end

@@ -79,9 +79,9 @@ describe WeighInsController do
         assigns(:weigh_in).should be_persisted
       end
 
-      it "redirects to the created weigh_in" do
+      it "redirects to the root url" do
         post :create, {:weigh_in => valid_attributes}, valid_session
-        response.should redirect_to(WeighIn.last)
+        response.should redirect_to(root_url)
       end
     end
 
@@ -120,10 +120,10 @@ describe WeighInsController do
         assigns(:weigh_in).should eq(weigh_in)
       end
 
-      it "redirects to the weigh_in" do
+      it "redirects to root index" do
         weigh_in = WeighIn.create! valid_attributes
         put :update, {:id => weigh_in.to_param, :weigh_in => valid_attributes}, valid_session
-        response.should redirect_to(weigh_in)
+        response.should redirect_to(root_url)
       end
     end
 
