@@ -1,0 +1,10 @@
+= simple_form_for(@person, :defaults => { :input_html => { :class => 'input-xlarge' } }) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :height, label: 'Height (m)'
+    = f.input :target_bmi, label: 'Target BMI'
+
+  .form-actions
+    = f.button :submit, :class => "btn-primary"

@@ -1,0 +1,16 @@
+.page-header
+  = link_to people_path, :class => 'btn' do
+    %i.icon-list-alt
+    Back
+  = link_to edit_person_path(@person), :class => 'btn btn-primary' do
+    %i.icon-pencil.icon-white
+    Edit
+  %h1 Listing people
+
+%dl
+  %dt Name:
+  %dd= @person.name
+  %dt Height:
+  %dd= @person.height
+  %dt Target bmi:
+  %dd= @person.target_bmi
