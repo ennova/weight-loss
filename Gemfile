@@ -44,3 +44,4 @@ gem 'bootstrap-generators', '~> 2.2'
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem 'bootstrap-datepicker-rails'
+gem "google_visualr", ">= 2.1"
