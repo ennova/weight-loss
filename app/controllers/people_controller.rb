@@ -95,7 +95,7 @@ class PeopleController < ApplicationController
         data_table.set_cell(index, 1, weigh_in.weight)
       end
 
-      opts   = { :title => 'Weight lost over time' }
+      opts = { height: 400, title: 'Weight lost over time', pointSize: 5 }
       chart = GoogleVisualr::Interactive::AreaChart.new(data_table, opts)
     end
 end
