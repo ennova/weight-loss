@@ -7,37 +7,39 @@
           %th Name
           %th Target BMI
           %th Starting weight (kg)
-          %th Last recorded BMI
-          %th Last recorded weight (kg)
+          %th Current BMI
+          %th Current weight (kg)
           %th Difference (kg)
 
       %tbody
         - @people.sort! { |person| person.weight_difference }
         - @people.each do |person|
           %tr{ class: "#{person.determine_row_class(person.weight_difference)}" }
-            %td= person.name
+            %td
+              =link_to person.name, person
             %td= number_with_precision(person.target_bmi, precision: 1, strip_insignificant_zeros: true)
-            %td= person.starting_weight
-            %td= number_with_precision(person.last_bmi, precision: 1, strip_insignificant_zeros: true)
-            %td= number_with_precision(person.last_weight, precision: 1, strip_insignificant_zeros: true)
+            %td= number_with_precision(person.starting_weight, precision: 1, strip_insignificant_zeros: true)
+            %td= number_with_precision(person.current_bmi, precision: 1, strip_insignificant_zeros: true)
+            %td= number_with_precision(person.current_weight, precision: 1, strip_insignificant_zeros: true)
             %td= number_with_precision(person.weight_difference, precision: 1, strip_insignificant_zeros: true)
 
-    %h3 This week vs. Last week
+    %h3 This weigh-in vs. Last weigh-in
     %table.table.table-bordered.table-striped
       %thead
         %tr
           %th Name
-          %th Last week
-          %th This week
+          %th Last weigh-in
+          %th This weigh-in
           %th Difference (kg)
 
       %tbody
         - @people.sort! { |person| person.week_difference }
         - @people.each do |person|
           %tr{ class: "#{person.determine_row_class(person.week_difference)}" }
-            %td= person.name
-            %td= number_with_precision(person.last_week_weight, precision: 1, strip_insignificant_zeros: true)
-            %td= number_with_precision(person.last_weight, precision: 1, strip_insignificant_zeros: true)            
+            %td
+              =link_to person.name, person
+            %td= number_with_precision(person.previous_weight, precision: 1, strip_insignificant_zeros: true)
+            %td= number_with_precision(person.current_weight, precision: 1, strip_insignificant_zeros: true)            
             %td= number_with_precision(person.week_difference, precision: 1, strip_insignificant_zeros: true)
   .span5
     = render 'weigh_ins/form'
