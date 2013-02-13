@@ -1,37 +1,4 @@
 class WeighInsController < ApplicationController
-  # GET /weigh_ins
-  # GET /weigh_ins.json
-  def index
-    @weigh_ins = WeighIn.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @weigh_ins }
-    end
-  end
-
-  # GET /weigh_ins/1
-  # GET /weigh_ins/1.json
-  def show
-    @weigh_in = WeighIn.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @weigh_in }
-    end
-  end
-
-  # GET /weigh_ins/new
-  # GET /weigh_ins/new.json
-  def new
-    @weigh_in = WeighIn.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @weigh_in }
-    end
-  end
-
   # GET /weigh_ins/1/edit
   def edit
     @weigh_in = WeighIn.find(params[:id])

@@ -24,7 +24,7 @@ describe PeopleController do
   # Person. As you add validations to Person, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { "name" => "MyString" }
+    { "name" => "MyString", "target_bmi" => 25, "height" => 1.98 }
   end
 
   # This should return the minimal set of values that should be in the session
