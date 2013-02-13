@@ -15,6 +15,7 @@ class PeopleController < ApplicationController
   # GET /people/1.json
   def show
     @person = Person.find(params[:id])
+    @chart = weight_chart(@person)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -81,4 +82,20 @@ class PeopleController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def weight_chart(person)
+      data_table = GoogleVisualr::DataTable.new
+      data_table.new_column('date', 'Date')
+      data_table.new_column('number', 'Weight')
+      data_table.add_rows(person.weigh_ins.count)
+      
+      person.weigh_ins.each_with_index  do |weigh_in, index|
+        data_table.set_cell(index, 0, weigh_in.date)
+        data_table.set_cell(index, 1, weigh_in.weight)
+      end
+
+      opts   = { :title => 'Weight lost over time' }
+      chart = GoogleVisualr::Interactive::AreaChart.new(data_table, opts)
+    end
 end
