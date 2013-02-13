@@ -60,7 +60,7 @@ class WeighInsController < ApplicationController
 
     respond_to do |format|
       if @weigh_in.update_attributes(params[:weigh_in])
-        format.html { redirect_to root_url, notice: 'Weigh in was successfully updated.' }
+        format.html { redirect_to @weigh_in.person, notice: 'Weigh in was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,7 @@ class WeighInsController < ApplicationController
     @weigh_in.destroy
 
     respond_to do |format|
-      format.html { redirect_to weigh_ins_url }
+      format.html { redirect_to @weigh_in.person }
       format.json { head :no_content }
     end
   end
