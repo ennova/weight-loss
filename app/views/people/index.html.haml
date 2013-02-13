@@ -16,11 +16,11 @@
         - @people.each do |person|
           %tr{ class: "#{person.determine_row_class(person.weight_difference)}" }
             %td= person.name
-            %td= number_with_precision(person.target_bmi, strip_insignificant_zeros: true)
+            %td= number_with_precision(person.target_bmi, precision: 1, strip_insignificant_zeros: true)
             %td= person.starting_weight
-            %td= number_with_precision(person.last_bmi, strip_insignificant_zeros: true)
-            %td= number_with_precision(person.last_weight, strip_insignificant_zeros: true)
-            %td= number_with_precision(person.weight_difference, strip_insignificant_zeros: true)
+            %td= number_with_precision(person.last_bmi, precision: 1, strip_insignificant_zeros: true)
+            %td= number_with_precision(person.last_weight, precision: 1, strip_insignificant_zeros: true)
+            %td= number_with_precision(person.weight_difference, precision: 1, strip_insignificant_zeros: true)
 
     %h3 This week vs. Last week
     %table.table.table-bordered.table-striped
@@ -36,8 +36,8 @@
         - @people.each do |person|
           %tr{ class: "#{person.determine_row_class(person.week_difference)}" }
             %td= person.name
-            %td= number_with_precision(person.last_week_weight, strip_insignificant_zeros: true)
-            %td= number_with_precision(person.last_weight, strip_insignificant_zeros: true)            
-            %td= number_with_precision(person.week_difference, strip_insignificant_zeros: true)
+            %td= number_with_precision(person.last_week_weight, precision: 1, strip_insignificant_zeros: true)
+            %td= number_with_precision(person.last_weight, precision: 1, strip_insignificant_zeros: true)            
+            %td= number_with_precision(person.week_difference, precision: 1, strip_insignificant_zeros: true)
   .span5
     = render 'weigh_ins/form'
