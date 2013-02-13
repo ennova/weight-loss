@@ -90,7 +90,7 @@ class PeopleController < ApplicationController
       data_table.new_column('number', 'Weight')
       data_table.add_rows(person.weigh_ins.count)
       
-      person.weigh_ins.each_with_index  do |weigh_in, index|
+      person.weigh_ins.order('date').each_with_index  do |weigh_in, index|
         data_table.set_cell(index, 0, weigh_in.date)
         data_table.set_cell(index, 1, weigh_in.weight)
       end

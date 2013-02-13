@@ -23,9 +23,12 @@
       %th Date
       %th Weight
       %th BMI
+      %th
   %tbody
     - @person.weigh_ins.order('date').each do |weigh_in|
       %tr
         %td= weigh_in.date
         %td= number_with_precision(weigh_in.weight, precision: 1, strip_insignificant_zeros: true)
         %td= number_with_precision(weigh_in.calculate_bmi, precision: 1, strip_insignificant_zeros: true)
+        %td= link_to 'Edit', edit_weigh_in_path(weigh_in)
+        %td= link_to 'Destroy', weigh_in, :confirm => 'Are you sure?', :method => :delete
