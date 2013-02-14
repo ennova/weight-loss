@@ -1,15 +1,17 @@
 .row
-  .span7
-    %h3 Overall 
-    %table.table.table-bordered.table-striped
+  .span8
+    %h3 Overall
+    %table.table.table-bordered.table-striped.table-condensed
       %thead
         %tr
           %th Name
           %th Target BMI
-          %th Starting weight (kg)
           %th Current BMI
-          %th Current weight (kg)
-          %th Difference (kg)
+          %th
+            .text-center Starting weight</br>(kg)
+          %th Current weight</br>(kg)
+          %th Difference</br>(kg)
+          %th Difference</br>(%)
 
       %tbody
         - @people.sort_by! { |person| person.weight_difference }
@@ -18,19 +20,20 @@
             %td
               =link_to person.name, person
             %td= number_with_precision(person.target_bmi, precision: 1, strip_insignificant_zeros: true)
-            %td= number_with_precision(person.starting_weight, precision: 1, strip_insignificant_zeros: true)
             %td= number_with_precision(person.current_bmi, precision: 1, strip_insignificant_zeros: true)
+            %td= number_with_precision(person.starting_weight, precision: 1, strip_insignificant_zeros: true)
             %td= number_with_precision(person.current_weight, precision: 1, strip_insignificant_zeros: true)
             %td= number_with_precision(person.weight_difference, precision: 1, strip_insignificant_zeros: true)
+            %td= number_with_precision(person.weight_difference_percentage, precision: 1, strip_insignificant_zeros: true)
 
-    %h3 This weigh-in vs. Last weigh-in
-    %table.table.table-bordered.table-striped
+    %h3 Recent weigh-ins
+    %table.table.table-bordered.table-striped.table-condensed
       %thead
         %tr
           %th Name
-          %th Last weigh-in (kg)
-          %th Current weigh-in (kg)
-          %th Difference (kg)
+          %th Last weigh-in</br>(kg)
+          %th Current weigh-in</br>(kg)
+          %th Difference</br>(kg)
 
       %tbody
         - @people.sort_by! { |person| person.recent_difference }
@@ -41,5 +44,7 @@
             %td= number_with_precision(person.previous_weight, precision: 1, strip_insignificant_zeros: true)
             %td= number_with_precision(person.current_weight, precision: 1, strip_insignificant_zeros: true)            
             %td= number_with_precision(person.recent_difference, precision: 1, strip_insignificant_zeros: true)
-  .span5
-    = render 'weigh_ins/form'
+  .span4
+    .hero-unit
+      %h3 Weigh-in
+      = render 'weigh_ins/form'

@@ -44,6 +44,12 @@ class Person < ActiveRecord::Base
     current_weight - starting_weight
   end
 
+  def weight_difference_percentage
+    unless starting_weight == 0.0
+      (current_weight - starting_weight) / starting_weight * 100
+    end
+  end
+
   def previous_weight
     weight = 0
     weigh_in = weigh_ins.order('date')[weigh_ins.count - 2]
