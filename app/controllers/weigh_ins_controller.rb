@@ -1,37 +1,4 @@
 class WeighInsController < ApplicationController
-  # GET /weigh_ins
-  # GET /weigh_ins.json
-  def index
-    @weigh_ins = WeighIn.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @weigh_ins }
-    end
-  end
-
-  # GET /weigh_ins/1
-  # GET /weigh_ins/1.json
-  def show
-    @weigh_in = WeighIn.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @weigh_in }
-    end
-  end
-
-  # GET /weigh_ins/new
-  # GET /weigh_ins/new.json
-  def new
-    @weigh_in = WeighIn.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @weigh_in }
-    end
-  end
-
   # GET /weigh_ins/1/edit
   def edit
     @weigh_in = WeighIn.find(params[:id])
@@ -40,11 +7,17 @@ class WeighInsController < ApplicationController
   # POST /weigh_ins
   # POST /weigh_ins.json
   def create
+    redirect_location = root_url
+    if params[:weigh_in].has_key? :redirect_location
+      redirect_location = params[:weigh_in][:redirect_location]
+      params[:weigh_in].delete :redirect_location
+    end
+    
     @weigh_in = WeighIn.new(params[:weigh_in])
 
     respond_to do |format|
       if @weigh_in.save
-        format.html { redirect_to root_url, notice: 'Weigh in was successfully created.' }
+        format.html { redirect_to redirect_location, notice: 'Weigh in was successfully created.' }
         format.json { render json: @weigh_in, status: :created, location: @weigh_in }
       else
         format.html { render action: "new" }
@@ -60,7 +33,7 @@ class WeighInsController < ApplicationController
 
     respond_to do |format|
       if @weigh_in.update_attributes(params[:weigh_in])
-        format.html { redirect_to root_url, notice: 'Weigh in was successfully updated.' }
+        format.html { redirect_to @weigh_in.person, notice: 'Weigh in was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +49,7 @@ class WeighInsController < ApplicationController
     @weigh_in.destroy
 
     respond_to do |format|
-      format.html { redirect_to weigh_ins_url }
+      format.html { redirect_to @weigh_in.person }
       format.json { head :no_content }
     end
   end

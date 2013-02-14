@@ -55,7 +55,7 @@ class Person < ActiveRecord::Base
     weight
   end
 
-  def week_difference
+  def recent_difference
     current_weight - previous_weight
   end
 
