@@ -7,11 +7,17 @@ class WeighInsController < ApplicationController
   # POST /weigh_ins
   # POST /weigh_ins.json
   def create
+    redirect_location = root_url
+    if params[:weigh_in].has_key? :redirect_location
+      redirect_location = params[:weigh_in][:redirect_location]
+      params[:weigh_in].delete :redirect_location
+    end
+    
     @weigh_in = WeighIn.new(params[:weigh_in])
 
     respond_to do |format|
       if @weigh_in.save
-        format.html { redirect_to root_url, notice: 'Weigh in was successfully created.' }
+        format.html { redirect_to redirect_location, notice: 'Weigh in was successfully created.' }
         format.json { render json: @weigh_in, status: :created, location: @weigh_in }
       else
         format.html { render action: "new" }

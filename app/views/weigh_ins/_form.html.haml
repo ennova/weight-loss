@@ -2,6 +2,7 @@
   = f.error_notification
 
   .form-inputs
+    = f.hidden_field :redirect_location, value: root_url
     = f.input :person_id, collection: Person.all
     = f.input :weight
     = f.input :date, as: :string, input_html: {class: 'datepicker'}
