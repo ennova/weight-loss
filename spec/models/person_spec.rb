@@ -5,12 +5,12 @@ describe Person do
 
   describe "should be able to" do
     
-    it "calculate last weight" do
-      person.last_weight.to_f.should eq 86.23
+    it "calculate current weight" do
+      person.current_weight.to_f.should eq 86.23
     end
 
-    it "calculate last BMI" do
-      person.last_bmi.to_f.should eq 26.032483999516966 # (86.23 / (1.82 * 1.82))
+    it "calculate current BMI" do
+      person.current_bmi.to_f.should eq 26.032483999516966 # (86.23 / (1.82 * 1.82))
     end
   end
 end

@@ -1,7 +1,7 @@
 WeightLoss::Application.routes.draw do
   root to: 'people#index'
 
-  resources :weigh_ins
+  resources :weigh_ins, except: [:show, :index, :new]
 
 
   resources :people

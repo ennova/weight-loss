@@ -16,6 +16,7 @@ class PeopleController < ApplicationController
   def show
     @person = Person.find(params[:id])
     @chart = weight_chart(@person)
+    @weigh_in = WeighIn.new
 
     respond_to do |format|
       format.html # show.html.erb

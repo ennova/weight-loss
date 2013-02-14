@@ -12,7 +12,7 @@
           %th Difference (kg)
 
       %tbody
-        - @people.sort! { |person| person.weight_difference }
+        - @people.sort_by! { |person| person.weight_difference }
         - @people.each do |person|
           %tr{ class: "#{person.determine_row_class(person.weight_difference)}" }
             %td
@@ -28,18 +28,18 @@
       %thead
         %tr
           %th Name
-          %th Last weigh-in
-          %th This weigh-in
+          %th Last weigh-in (kg)
+          %th Current weigh-in (kg)
           %th Difference (kg)
 
       %tbody
-        - @people.sort! { |person| person.week_difference }
+        - @people.sort_by! { |person| person.recent_difference }
         - @people.each do |person|
-          %tr{ class: "#{person.determine_row_class(person.week_difference)}" }
+          %tr{ class: "#{person.determine_row_class(person.recent_difference)}" }
             %td
               =link_to person.name, person
             %td= number_with_precision(person.previous_weight, precision: 1, strip_insignificant_zeros: true)
             %td= number_with_precision(person.current_weight, precision: 1, strip_insignificant_zeros: true)            
-            %td= number_with_precision(person.week_difference, precision: 1, strip_insignificant_zeros: true)
+            %td= number_with_precision(person.recent_difference, precision: 1, strip_insignificant_zeros: true)
   .span5
     = render 'weigh_ins/form'

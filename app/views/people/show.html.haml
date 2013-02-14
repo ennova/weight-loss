@@ -16,6 +16,19 @@
 #chart
   = render_chart(@chart, 'chart')
 
+.row
+  .span5
+    %h5 Add new weigh-in?
+    = simple_form_for(@weigh_in) do |f|
+      = f.error_notification
+
+      .form-inputs
+        = f.hidden_field :redirect_location, value: person_path(@person)
+        = f.hidden_field :person_id, value: @person.id
+        = f.input :weight
+        = f.input :date, as: :string, input_html: {class: 'datepicker'}
+        = f.button :submit, value: "Record weigh-in", class: 'btn-primary'
+
 %h3 Recorded weigh-ins
 %table.table.table-bordered.table-striped
   %thead

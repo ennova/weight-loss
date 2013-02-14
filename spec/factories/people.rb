@@ -6,7 +6,7 @@ FactoryGirl.define do
     height 1.82
     target_bmi 19.7
     after(:create) do |person|
-      person.weigh_ins << FactoryGirl.create(:weigh_in)
+      person.weigh_ins << FactoryGirl.create(:weigh_in, person: person)
     end
   end
 end

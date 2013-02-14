@@ -24,7 +24,7 @@ describe WeighInsController do
   # WeighIn. As you add validations to WeighIn, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { "person_id" => "1" }
+    { "person_id" => "1", "weight" => 50, "date" => Date.today }
   end
 
   # This should return the minimal set of values that should be in the session
@@ -32,29 +32,6 @@ describe WeighInsController do
   # WeighInsController. Be sure to keep this updated too.
   def valid_session
     {}
-  end
-
-  describe "GET index" do
-    it "assigns all weigh_ins as @weigh_ins" do
-      weigh_in = WeighIn.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:weigh_ins).should eq([weigh_in])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested weigh_in as @weigh_in" do
-      weigh_in = WeighIn.create! valid_attributes
-      get :show, {:id => weigh_in.to_param}, valid_session
-      assigns(:weigh_in).should eq(weigh_in)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new weigh_in as @weigh_in" do
-      get :new, {}, valid_session
-      assigns(:weigh_in).should be_a_new(WeighIn)
-    end
   end
 
   describe "GET edit" do
@@ -92,13 +69,6 @@ describe WeighInsController do
         post :create, {:weigh_in => { "person_id" => "invalid value" }}, valid_session
         assigns(:weigh_in).should be_a_new(WeighIn)
       end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        WeighIn.any_instance.stub(:save).and_return(false)
-        post :create, {:weigh_in => { "person_id" => "invalid value" }}, valid_session
-        response.should render_template("new")
-      end
     end
   end
 
@@ -120,10 +90,10 @@ describe WeighInsController do
         assigns(:weigh_in).should eq(weigh_in)
       end
 
-      it "redirects to root index" do
+      it "redirects to person" do
         weigh_in = WeighIn.create! valid_attributes
         put :update, {:id => weigh_in.to_param, :weigh_in => valid_attributes}, valid_session
-        response.should redirect_to(root_url)
+        response.should redirect_to(weigh_in.person)
       end
     end
 
@@ -154,10 +124,10 @@ describe WeighInsController do
       }.to change(WeighIn, :count).by(-1)
     end
 
-    it "redirects to the weigh_ins list" do
+    it "redirects to the weigh_ins of the person who owned the weigh-in list" do
       weigh_in = WeighIn.create! valid_attributes
       delete :destroy, {:id => weigh_in.to_param}, valid_session
-      response.should redirect_to(weigh_ins_url)
+      response.should redirect_to(weigh_in.person)
     end
   end
 
