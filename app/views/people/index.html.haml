@@ -45,6 +45,6 @@
             %td= number_with_precision(person.current_weight, precision: 1, strip_insignificant_zeros: true)            
             %td= number_with_precision(person.recent_difference, precision: 1, strip_insignificant_zeros: true)
   .span4
-    .hero-unit
+    .hero-unit#weigh-in-form
       %h3 Weigh-in
       = render 'weigh_ins/form'
