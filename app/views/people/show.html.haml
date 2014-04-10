@@ -38,7 +38,7 @@
       %th BMI
       %th
   %tbody
-    - @person.weigh_ins.order('date').each do |weigh_in|
+    - @person.weigh_ins.order('date DESC').each do |weigh_in|
       %tr
         %td= weigh_in.date
         %td= number_with_precision(weigh_in.weight, precision: 1, strip_insignificant_zeros: true)
